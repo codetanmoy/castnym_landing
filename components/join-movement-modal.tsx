@@ -59,7 +59,7 @@ export default function JoinMovementModal({ isOpen, onClose }: JoinMovementModal
     const linkedInUrl = new URL("https://www.linkedin.com/shareArticle")
     linkedInUrl.searchParams.set("mini", "true")
     linkedInUrl.searchParams.set("url", "https://castnym.com")
-    linkedInUrl.searchParams.set("title", "Licensed Identity Movement by Castnym")
+    linkedInUrl.searchParams.set("title", "Licensed Identity Movement by CastNym")
     linkedInUrl.searchParams.set("summary", shareText)
     openShareWindow(linkedInUrl.toString())
   }

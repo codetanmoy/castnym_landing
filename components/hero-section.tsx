@@ -23,7 +23,7 @@ export default function HeroSection() {
           >
             <Image
               src="/Trans_Logo_rect.png"
-              alt="Castnym logo"
+              alt="CastNym logo"
               width={180}
               height={60}
               priority
@@ -54,7 +54,7 @@ export default function HeroSection() {
           <div className="relative mx-auto w-full max-w-4xl aspect-square rounded-3xl overflow-hidden shadow-2xl">
             <Image
               src="/header.png"
-              alt="Castnym creators collaborating with consent"
+              alt="CastNym creators collaborating with consent"
               fill
               priority
               className="object-cover"
@@ -86,9 +86,9 @@ export default function HeroSection() {
         <p
           className={`mt-6 text-sm text-gray-500 text-center leading-relaxed transition-all duration-1000 delay-400 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
         >
-          trust & transparency · Early access. Limited waves. We verify every identity.
+          Early access. Limited waves. We verify every identity.
           <br />
-          Castnym will never use your face for AI model training without your explicit permission.
+          CastNym will never use your face for AI model training without your explicit permission.
         </p>
       </div>
 

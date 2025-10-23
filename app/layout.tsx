@@ -8,7 +8,7 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Castnym — Digital Identity Licensing for Ethical AI Video Creation",
+  title: "CastNym — Digital Identity Licensing for Ethical AI Video Creation",
   description:
     "Create with consent. License real faces for AI video — ethically, legally, and securely. Your face is your digital identity. Own it.",
   generator: "v0.app",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
   manifest: "/favicon/site.webmanifest",
   openGraph: {
-    title: "Castnym — Digital Identity Licensing for Ethical AI Video Creation",
+    title: "CastNym — Digital Identity Licensing for Ethical AI Video Creation",
     description:
       "Create with consent. License real faces for AI video — ethically, legally, and securely. Your face is your digital identity. Own it.",
     type: "website",
@@ -49,7 +49,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: "Castnym",
+              name: "CastNym",
               description: "Digital Identity Licensing for Ethical AI Video Creation",
               url: "https://castnym.com",
             }),

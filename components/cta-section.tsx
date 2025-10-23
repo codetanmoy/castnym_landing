@@ -61,7 +61,7 @@ export default function CtaSection() {
           <p className="text-gray-600 mb-4">
             <span className="font-medium">Early access · Privacy-first · No spam.</span>
             <br />
-            Castnym will never use your face for AI model training without your explicit permission.
+            CastNym will never use your face for AI model training without your explicit permission.
           </p>
           <p className="text-sm text-gray-500">Creator onboarding opens late Nov · Buyer access mid–late Dec</p>
         </div>

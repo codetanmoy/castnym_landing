@@ -34,7 +34,7 @@ export function joinMovementEmail({ firstName }: JoinMovementEmailProps) {
                 <table cellpadding="0" cellspacing="0" style="margin-bottom: 24px;">
                   <tr>
                     <td style="padding-right: 8px;">
-                      <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://castnym.com&title=Licensed%20Identity%20Movement%20by%20Castnym&summary=I%20just%20joined%20the%20Licensed%20Identity%20Movement%20by%20%40Castnym%20%E2%80%94%20a%20new%20platform%20that%20puts%20consent,%20ownership,%20and%20payment%20back%20in%20the%20hands%20of%20real%20people.%0A%0AYour%20face%20is%20your%20digital%20identity.%20Own%20it.%0A%F0%9F%91%89%20castnym.com" style="display: inline-block; padding: 12px 18px; background-color: #0A66C2; color: #ffffff; text-decoration: none; border-radius: 999px; font-size: 14px; font-weight: 600;">
+                      <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://castnym.com&title=Licensed%20Identity%20Movement%20by%20CastNym&summary=I%20just%20joined%20the%20Licensed%20Identity%20Movement%20by%20%40Castnym%20%E2%80%94%20a%20new%20platform%20that%20puts%20consent,%20ownership,%20and%20payment%20back%20in%20the%20hands%20of%20real%20people.%0A%0AYour%20face%20is%20your%20digital%20identity.%20Own%20it.%0A%F0%9F%91%89%20castnym.com" style="display: inline-block; padding: 12px 18px; background-color: #0A66C2; color: #ffffff; text-decoration: none; border-radius: 999px; font-size: 14px; font-weight: 600;">
                         Share on LinkedIn
                       </a>
                     </td>
