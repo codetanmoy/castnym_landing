@@ -18,7 +18,7 @@ export default function Footer() {
               Terms
             </a>
             <a
-              href="mailto:Ishant.dudeja@castnym.com"
+              href="mailto:support@castnym.com"
               className="text-gray-400 hover:text-white transition-colors"
             >
               Contact

@@ -237,9 +237,9 @@ export default function JoinMovementModal({ isOpen, onClose }: JoinMovementModal
                       className="mt-1 h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500"
                     />
                     <span>
-                      <span className="block text-base font-medium text-gray-900">License my face</span>
+                      <span className="block text-base font-medium text-gray-900">Likeness with face</span>
                       <span className="block text-sm text-gray-600">
-                        Add your likeness to CastNym and get compensated when creators use it.
+                        Add your face to CastNym and get compensated when creators use it.
                       </span>
                     </span>
                   </label>
@@ -346,9 +346,9 @@ export default function JoinMovementModal({ isOpen, onClose }: JoinMovementModal
                   <a href="/terms" className="text-blue-600 underline hover:text-blue-700">
                     Terms
                   </a>
-                  , Identity Licensing Policy, and{" "}
+                  , Terms, and{" "}
                   <a href="/privacy-policy" className="text-blue-600 underline hover:text-blue-700">
-                    Privacy Policy
+                     Policy
                   </a>
                   .
                 </span>
