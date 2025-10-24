@@ -342,7 +342,15 @@ export default function JoinMovementModal({ isOpen, onClose }: JoinMovementModal
                   className="mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                 />
                 <span className="text-sm text-gray-600">
-                  I agree to the CastNym Terms, Identity Licensing Policy, and Privacy Policy.
+                  I agree to the CastNym{" "}
+                  <a href="/terms" className="text-blue-600 underline hover:text-blue-700">
+                    Terms
+                  </a>
+                  , Identity Licensing Policy, and{" "}
+                  <a href="/privacy-policy" className="text-blue-600 underline hover:text-blue-700">
+                    Privacy Policy
+                  </a>
+                  .
                 </span>
               </label>
 

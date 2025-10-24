@@ -11,13 +11,16 @@ export default function Footer() {
 
           {/* Links */}
           <div className="flex gap-8 text-sm">
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">
+            <a href="/privacy-policy" className="text-gray-400 hover:text-white transition-colors">
               Privacy
             </a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">
+            <a href="/terms" className="text-gray-400 hover:text-white transition-colors">
               Terms
             </a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">
+            <a
+              href="mailto:Ishant.dudeja@castnym.com"
+              className="text-gray-400 hover:text-white transition-colors"
+            >
               Contact
             </a>
           </div>
