@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import { Play } from "lucide-react"
+import posthog from "posthog-js"
 
 import JoinMovementModal from "./join-movement-modal"
 
@@ -65,11 +66,16 @@ export default function HeroSection() {
               {/* CTA block */}
               <button
                 type="button"
-                onClick={() => setIsModalOpen(true)}
+                onClick={() => {
+                  posthog.capture("join_movement_modal_opened", {
+                    source: "hero_section",
+                  })
+                  setIsModalOpen(true)
+                }}
                 className="flex items-center gap-2 px-8 py-4 bg-white/90 hover:bg-white text-gray-900 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:-translate-y-0.5"
               >
                 <span>Join the Movement →</span>
-                
+
               </button>
             </div>
 

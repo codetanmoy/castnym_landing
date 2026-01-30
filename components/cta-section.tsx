@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { ArrowRight } from "lucide-react"
+import posthog from "posthog-js"
 
 import JoinMovementModal from "./join-movement-modal"
 
@@ -43,7 +44,12 @@ export default function CtaSection() {
         >
           <button
             type="button"
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => {
+              posthog.capture("join_movement_modal_opened", {
+                source: "cta_section",
+              })
+              setIsModalOpen(true)
+            }}
             className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-blue-400/50 active:scale-95"
             style={{
               background: "linear-gradient(135deg, #6F00FF 0%, #00B8FF 100%)",

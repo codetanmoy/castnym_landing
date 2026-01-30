@@ -1,4 +1,12 @@
+"use client"
+
+import posthog from "posthog-js"
+
 export default function Footer() {
+  const handleLinkClick = (linkName: string) => {
+    posthog.capture("footer_link_clicked", { link_name: linkName })
+  }
+
   return (
     <footer className="bg-gray-900 text-white py-12 md:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -11,14 +19,23 @@ export default function Footer() {
 
           {/* Links */}
           <div className="flex gap-8 text-sm">
-            <a href="/privacy-policy" className="text-gray-400 hover:text-white transition-colors">
+            <a
+              href="/privacy-policy"
+              onClick={() => handleLinkClick("privacy")}
+              className="text-gray-400 hover:text-white transition-colors"
+            >
               Privacy
             </a>
-            <a href="/terms" className="text-gray-400 hover:text-white transition-colors">
+            <a
+              href="/terms"
+              onClick={() => handleLinkClick("terms")}
+              className="text-gray-400 hover:text-white transition-colors"
+            >
               Terms
             </a>
             <a
               href="mailto:support@castnym.com"
+              onClick={() => handleLinkClick("contact")}
               className="text-gray-400 hover:text-white transition-colors"
             >
               Contact

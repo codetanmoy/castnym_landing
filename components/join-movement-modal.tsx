@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useState, useTransition } from "react"
 import { X } from "lucide-react"
+import posthog from "posthog-js"
 
 import { supabaseBrowserClient } from "@/lib/supabase-browser"
 import { sendJoinMovementEmail } from "@/app/actions/send-join-movement-email"
@@ -44,6 +45,7 @@ export default function JoinMovementModal({ isOpen, onClose }: JoinMovementModal
     try {
       await navigator.clipboard.writeText(shareText)
       setCopyFeedback("Copied!")
+      posthog.capture("share_text_copied")
       setTimeout(() => setCopyFeedback(null), 2000)
     } catch {
       setCopyFeedback("Copy failed. Try copying the text manually.")
@@ -56,6 +58,7 @@ export default function JoinMovementModal({ isOpen, onClose }: JoinMovementModal
   }
 
   const handleShareLinkedIn = () => {
+    posthog.capture("social_share_clicked", { platform: "linkedin" })
     const linkedInUrl = new URL("https://www.linkedin.com/shareArticle")
     linkedInUrl.searchParams.set("mini", "true")
     linkedInUrl.searchParams.set("url", "https://castnym.com")
@@ -65,12 +68,14 @@ export default function JoinMovementModal({ isOpen, onClose }: JoinMovementModal
   }
 
   const handleShareX = () => {
+    posthog.capture("social_share_clicked", { platform: "x" })
     const tweetUrl = new URL("https://twitter.com/intent/tweet")
     tweetUrl.searchParams.set("text", shareText)
     openShareWindow(tweetUrl.toString())
   }
 
   const handleShareInstagram = () => {
+    posthog.capture("social_share_clicked", { platform: "instagram" })
     openShareWindow("https://www.instagram.com/")
   }
 
@@ -115,14 +120,34 @@ export default function JoinMovementModal({ isOpen, onClose }: JoinMovementModal
       setIsSuccess(true)
       setSelectedIntent(null)
 
+      // Track successful form submission and identify the user
+      posthog.capture("join_movement_form_submitted", {
+        intent: intentValue,
+        has_phone: Boolean(phoneRaw && phoneRaw.length > 0),
+        has_comment: Boolean(commentRaw && commentRaw.length > 0),
+      })
+
+      // Identify the user with their email
+      posthog.identify(email, {
+        email: email,
+        name: name,
+        intent: intentValue,
+      })
+
       startEmailSend(() => {
         sendJoinMovementEmail({ email, name }).catch((emailError) => {
           console.error("Failed to send confirmation email:", emailError)
+          posthog.captureException(emailError)
         })
       })
     } catch (error) {
       const message = error instanceof Error ? error.message : "Something went wrong."
       setFormError(message)
+      posthog.capture("join_movement_form_error", {
+        error_message: message,
+        intent: intentValue,
+      })
+      posthog.captureException(error)
     } finally {
       setIsSubmitting(false)
     }
@@ -149,7 +174,15 @@ export default function JoinMovementModal({ isOpen, onClose }: JoinMovementModal
           </div>
           <button
             type="button"
-            onClick={onClose}
+            onClick={() => {
+              if (!isSuccess) {
+                posthog.capture("join_movement_modal_closed", {
+                  had_intent_selected: Boolean(selectedIntent),
+                  selected_intent: selectedIntent,
+                })
+              }
+              onClose()
+            }}
             aria-label="Close"
             className="rounded-full border border-gray-200 p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700"
           >
@@ -233,7 +266,10 @@ export default function JoinMovementModal({ isOpen, onClose }: JoinMovementModal
                       name="intent"
                       value="license"
                       checked={selectedIntent === "license"}
-                      onChange={() => setSelectedIntent("license")}
+                      onChange={() => {
+                        setSelectedIntent("license")
+                        posthog.capture("join_movement_intent_selected", { intent: "license" })
+                      }}
                       className="mt-1 h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500"
                     />
                     <span>
@@ -254,7 +290,10 @@ export default function JoinMovementModal({ isOpen, onClose }: JoinMovementModal
                       name="intent"
                       value="make"
                       checked={selectedIntent === "make"}
-                      onChange={() => setSelectedIntent("make")}
+                      onChange={() => {
+                        setSelectedIntent("make")
+                        posthog.capture("join_movement_intent_selected", { intent: "make" })
+                      }}
                       className="mt-1 h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500"
                     />
                     <span>
@@ -275,7 +314,10 @@ export default function JoinMovementModal({ isOpen, onClose }: JoinMovementModal
                       name="intent"
                       value="both"
                       checked={selectedIntent === "both"}
-                      onChange={() => setSelectedIntent("both")}
+                      onChange={() => {
+                        setSelectedIntent("both")
+                        posthog.capture("join_movement_intent_selected", { intent: "both" })
+                      }}
                       className="mt-1 h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500"
                     />
                     <span>
@@ -363,7 +405,13 @@ export default function JoinMovementModal({ isOpen, onClose }: JoinMovementModal
                 <div className="flex gap-3">
                   <button
                     type="button"
-                    onClick={onClose}
+                    onClick={() => {
+                      posthog.capture("join_movement_modal_closed", {
+                        had_intent_selected: Boolean(selectedIntent),
+                        selected_intent: selectedIntent,
+                      })
+                      onClose()
+                    }}
                     disabled={isSubmitting}
                     className="rounded-xl border border-gray-200 px-5 py-3 text-sm font-semibold text-gray-700 transition-all hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-70"
                   >
